@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - AI Sports Talent Assessment</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>AI-Powered Sports Talent Assessment</h1>
+    </header>
+
+    <main class="form-container">
+        <h2>Login</h2>
+        <!-- <form id="loginForm" action="/login" method="POST"> --> <!--DEFAULT-->
+        <form id="loginForm" action="dashboard.html" method="GET" >
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+
+        <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <p class="redirect-text">
+            New user? <a href="register.html">Register here</a>
+        </p>
+    </main>
+
+    <footer>
+        <p>© 2024 Sports Authority of India</p>
+    </footer>
+</body>
+
+</html>

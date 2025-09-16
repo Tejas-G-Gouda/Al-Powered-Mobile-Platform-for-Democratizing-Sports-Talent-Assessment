@@ -1,0 +1,172 @@
+Reset and base
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f0f4f8;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    background: #00796b;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 2rem;
+    border: 2px solid #00796b;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #00796b;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: #004d40;
+    color: white;
+    border-color: #004d40;
+}
+
+.btn-primary {
+    background-color: #00796b;
+    color: white;
+    border-color: #00796b;
+}
+
+.btn-primary:hover {
+    background-color: #004d40;
+    border-color: #004d40;
+}
+
+footer {
+    background: #004d40;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+
+
+
+/* Login CSS */
+
+
+.form-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 1.5rem;
+    color: #00796b;
+}
+
+.form-container label {
+    display: block;
+    text-align: left;
+    margin: 0.75rem 0 0.25rem;
+    font-weight: 600;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1.5px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-container input:focus {
+    border-color: #00796b;
+    outline: none;
+}
+
+.form-container button {
+    margin-top: 1.5rem;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.redirect-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.redirect-text a {
+    color: #00796b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.redirect-text a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+/* Register CSS */
+.form-container select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1.5px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    appearance: none;
+    /* Removes default arrow in some browsers */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-container select:focus {
+    border-color: #00796b;
+    outline: none;
+}
+
+
+.sport-type{
+    text-align: center;
+    font-weight: bold;
+}

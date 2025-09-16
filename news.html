@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sports News - AI Sports Talent Assessment</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        nav {
+            background-color: #00796b;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        nav .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 600;
+        }
+
+        nav .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .news-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        h2 {
+            color: #00796b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .news-article {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-article h3 {
+            margin-top: 0;
+            color: #004d40;
+        }
+
+        .news-date {
+            font-size: 0.9rem;
+            color: #00796b;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-description {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .read-more {
+            color: #00796b;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #00796b;
+            margin-top: 2rem;
+        }
+
+        .error {
+            text-align: center;
+            color: red;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">AI Sports Talent</div>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="profile.html">Profile</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </nav>
+
+    <main class="news-container">
+        <h2>Latest Indian Sports News</h2>
+        <div id="newsList">
+            <p class="loading">Loading news...</p>
+        </div>
+    </main>
+
+    <script>
+    const newsList = document.getElementById('newsList');
+
+    // ⚠️ Important: For production, hide this API key using a backend proxy (Flask/Node).
+    const API_KEY = '194e9aac2d8c4196b24e63a40ed473e6';
+
+    async function fetchNews() {
+        try {
+            const response = await fetch(`https://newsapi.org/v2/everything?q=athletics+india&language=en&sortBy=publishedAt&pageSize=10&apiKey=${API_KEY}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (!data.articles || data.articles.length === 0) {
+                newsList.innerHTML = '<p>No athletics news found.</p>';
+                return;
+            }
+
+            newsList.innerHTML = '';
+
+            data.articles.forEach(article => {
+                const articleEl = document.createElement('article');
+                articleEl.className = 'news-article';
+
+                const title = article.title || 'No title';
+                const date = new Date(article.publishedAt).toLocaleDateString();
+                const description = article.description || '';
+                const url = article.url || '#';
+                const imageUrl = article.urlToImage || 'https://via.placeholder.com/800x400?text=No+Image';
+
+                articleEl.innerHTML = `
+                    <img src="${imageUrl}" alt="News image" style="width:100%; max-height:300px; object-fit:cover; border-radius:10px; margin-bottom:1rem;">
+                    <h3>${title}</h3>
+                    <div class="news-date">${date}</div>
+                    <p class="news-description">${description}</p>
+                    <a href="${url}" target="_blank" rel="noopener" class="read-more">Read More</a>
+                `;
+
+                newsList.appendChild(articleEl);
+            });
+        } catch (error) {
+            newsList.innerHTML = `<p class="error">Failed to load news: ${error.message}</p>`;
+        }
+    }
+
+    // Initial fetch
+    fetchNews();
+
+    // Auto-refresh every 5 minutes
+    setInterval(fetchNews, 5 * 60 * 1000);
+</script>
+
+</body>
+
+</html>

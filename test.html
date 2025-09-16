@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fitness Test - AI Sports Talent Assessment</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            max-height: 320px;
+            margin-top: 1rem;
+            border-radius: 10px;
+            background: black;
+        }
+
+        .btn-group {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        button,
+        input[type="file"] {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 2px solid #00796b;
+            background-color: white;
+            color: #00796b;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        button:hover,
+        input[type="file"]:hover {
+            background-color: #00796b;
+            color: white;
+        }
+
+        #submitBtn {
+            margin-top: 1.5rem;
+            background-color: #004d40;
+            border-color: #004d40;
+            color: white;
+        }
+
+        #submitBtn:hover {
+            background-color: #00281a;
+            border-color: #00281a;
+        }
+
+        #instructions {
+            font-size: 1.1rem;
+            color: #004d40;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>AI-Powered Sports Talent Assessment</h1>
+    </header>
+
+    <main class="container">
+        <div class="profile-header">
+            <a href="dashboard.html" class="back-btn">←</a>
+            <h2 id="testTitle">Fitness Test</h2>
+        </div>
+        
+        <p id="instructions">Loading instructions...</p>
+
+        <div class="btn-group">
+            <button id="startRecordBtn">Start Recording</button>
+            <button id="stopRecordBtn" disabled>Stop Recording</button>
+            <label for="uploadVideo"
+                style="border: 2px solid #00796b; border-radius: 5px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 600; color: #00796b;">
+                Upload Video
+            </label>
+            <input type="file" id="uploadVideo" accept="video/*" style="display:none" />
+        </div>
+
+        <video id="videoPreview" controls></video>
+
+        <button id="submitBtn" disabled>Submit Video</button>
+    </main>
+
+    <script>
+        // Map test keys to titles and instructions
+        const testData = {
+            vertical_jump: {
+                title: "Vertical Jump Test",
+                instructions: "Record a video of your vertical jump. Stand next to a wall or marker and jump as high as you can."
+            },
+            situps: {
+                title: "Sit-ups Test",
+                instructions: "Record a video of you performing sit-ups for 1 minute. Make sure your full body is visible."
+            },
+            shuttle_run: {
+                title: "Shuttle Run Test",
+                instructions: "Record a video of your shuttle run test. Run back and forth between two points as fast as possible."
+            },
+            endurance_run: {
+                title: "Endurance Run Test",
+                instructions: "Record a video of your endurance run. Run continuously for the required distance."
+            }
+        };
+
+        // Get test from URL query parameter
+        function getTestFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('test') || 'vertical_jump';
+        }
+
+        const testKey = getTestFromURL();
+        const testInfo = testData[testKey] || testData['vertical_jump'];
+
+        // Set title and instructions
+        document.getElementById('testTitle').textContent = testInfo.title;
+        document.getElementById('instructions').textContent = testInfo.instructions;
+
+        // Video recording setup
+        let mediaRecorder;
+        let recordedChunks = [];
+        const videoPreview = document.getElementById('videoPreview');
+        const startRecordBtn = document.getElementById('startRecordBtn');
+        const stopRecordBtn = document.getElementById('stopRecordBtn');
+        const uploadVideoInput = document.getElementById('uploadVideo');
+        const submitBtn = document.getElementById('submitBtn');
+
+        startRecordBtn.onclick = async () => {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUser Media) {
+                alert('Camera API not supported in this browser.');
+                return;
+            }
+            try {
+                const stream = await navigator.mediaDevices.getUser Media({ video: true, audio: true });
+                videoPreview.srcObject = stream;
+                videoPreview.play();
+
+                recordedChunks = [];
+                mediaRecorder = new MediaRecorder(stream);
+
+                mediaRecorder.ondataavailable = e => {
+                    if (e.data.size > 0) recordedChunks.push(e.data);
+                };
+
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                    videoPreview.srcObject = null;
+                    videoPreview.src = URL.createObjectURL(blob);
+                    videoPreview.controls = true;
+                    submitBtn.disabled = false;
+                    // Stop all tracks to release camera
+                    stream.getTracks().forEach(track => track.stop());
+                };
+
+                mediaRecorder.start();
+                startRecordBtn.disabled = true;
+                stopRecordBtn.disabled = false;
+                submitBtn.disabled = true;
+            } catch (err) {
+                alert('Error accessing camera: ' + err.message);
+            }
+        };
+
+        stopRecordBtn.onclick = () => {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                startRecordBtn.disabled = false;
+                stopRecordBtn.disabled = true;
+            }
+        };
+
+        // Handle video upload
+        uploadVideoInput.onchange = () => {
+            const file = uploadVideoInput.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                videoPreview.srcObject = null;
+                videoPreview.src = url;
+                videoPreview.controls = true;
+                submitBtn.disabled = false;
+            }
+        };
+
+        // Submit button placeholder
+        submitBtn.onclick = () => {
+            alert('Video submitted successfully! (This is a placeholder)');
+            // TODO: Implement actual upload to backend
+        };
+    </script>
+</body>
+
+</html>

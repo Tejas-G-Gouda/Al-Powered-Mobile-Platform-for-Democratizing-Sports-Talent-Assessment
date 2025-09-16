@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile - AI Sports Talent Assessment</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Profile photo circle */
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00796b;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .photo-upload-label {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #00796b;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centers the text */
+    margin-bottom: 1.5rem;
+    position: relative; /* allows absolute positioning inside */
+}
+
+.profile-header h2 {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+    color: #00796b;
+}
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #00796b;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #004d40;
+}
+
+    </style>
+    <script>
+        // Preview uploaded profile photo
+        function previewPhoto(event) {
+            const photo = document.getElementById('profilePhoto');
+            photo.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>AI-Powered Sports Talent Assessment</h1>
+    </header>
+
+    <main class="form-container">
+        <div class="profile-header">
+            <a href="dashboard.html" class="back-btn">←</a>
+            <h2>Your Profile</h2>
+        </div>
+
+        <form id="profileForm" action="/profile" method="POST" enctype="multipart/form-data">
+            <label for="photoUpload" class="photo-upload-label">
+                <img src="images/default-profile.png" alt="Profile Photo" id="profilePhoto" class="profile-photo" />
+                <br />
+                Click to upload/change photo
+            </label>
+            <input type="file" id="photoUpload" name="profilePhoto" accept="image/*" style="display:none"
+                onchange="previewPhoto(event)" />
+
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="10" max="100" required />
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" name="height" min="50" max="250" placeholder="e.g., 170" required />
+
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" name="weight" min="20" max="200" placeholder="e.g., 65" required />
+
+            <label for="contactNumber">Contact Number</label>
+            <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your phone number" required />
+
+            <label for="emergencyContact">Emergency Contact</label>
+            <input type="tel" id="emergencyContact" name="emergencyContact" placeholder="Guardian or emergency number"
+                required />
+
+            <label for="sportsHistory">Sports History</label>
+            <textarea id="sportsHistory" name="sportsHistory" rows="4"
+                placeholder="Briefly describe your sports experience"></textarea>
+
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2024 Sports Authority of India</p>
+    </footer>
+</body>
+
+</html>
