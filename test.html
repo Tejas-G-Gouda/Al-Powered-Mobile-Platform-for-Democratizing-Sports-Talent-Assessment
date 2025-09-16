@@ -69,6 +69,42 @@
             color: #004d40;
             margin-bottom: 1rem;
         }
+        
+        .profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centers the text */
+    margin-bottom: 1.5rem;
+    position: relative; /* allows absolute positioning inside */
+}
+
+.profile-header h2 {
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+    color: #00796b;
+}
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #00796b;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #004d40;
+}
     </style>
 </head>
 
