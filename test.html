@@ -5,28 +5,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fitness Test - AI Sports Talent Assessment</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
-        .container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #e0f2f1;
+            
+        }
+
+        header {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            padding: 2rem 1rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            color: #a5d6a7;
+            text-shadow: 0 0 8px rgba(0, 121, 107, 0.7);
+            user-select: none;
+        }
+
+        main.form-container {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            /* translucent white */
+            max-width: 520px;
+            margin: 40px auto 40px;
+            padding: 2.5rem 3rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 77, 64, 0.6);
+            backdrop-filter: blur(10px);
+            color: #e0f2f1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            box-sizing: border-box;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-header h2 {
+            margin: 0;
+            flex-grow: 1;
+            color: #a5d6a7;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-align: center;
+            text-shadow: 0 0 6px rgba(0, 121, 107, 0.8);
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #049080;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        .back-btn:hover {
+            background-color: #004d40;
+        }
+
+        #instructions {
+            font-size: 1.2rem;
+            color: #a5d6a7;
+            margin-bottom: 1rem;
+            min-height: 60px;
+            user-select: none;
             text-align: center;
         }
 
-        video {
-            width: 100%;
-            max-height: 320px;
-            margin-top: 1rem;
-            border-radius: 10px;
-            background: black;
-        }
-
         .btn-group {
-            margin-top: 1rem;
             display: flex;
             justify-content: center;
             gap: 1rem;
@@ -34,77 +106,119 @@
         }
 
         button,
-        input[type="file"] {
-            padding: 0.75rem 1.5rem;
+        label[for="uploadVideo"] {
+            padding: 0.75rem 1.8rem;
             font-size: 1rem;
-            border-radius: 5px;
+            border-radius: 30px;
             border: 2px solid #00796b;
             background-color: white;
             color: #00796b;
             cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 700;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 130px;
+            box-shadow: 0 4px 12px rgba(0, 121, 107, 0.3);
+        }
+
+        button:active,
+        label[for="uploadVideo"]:active {
+            transform: scale(0.95);
         }
 
         button:hover,
-        input[type="file"]:hover {
-            background-color: #00796b;
+        label[for="uploadVideo"]:hover {
+            background-color: #21a696cc;
+            transform: translateY(-2px);
+            
             color: white;
+            box-shadow: 0 6px 20px rgba(0, 121, 107, 0.6);
+        }
+
+        input[type="file"] {
+            display: none;
         }
 
         #submitBtn {
             margin-top: 1.5rem;
-            background-color: #004d40;
+            background: linear-gradient(135deg, #004d40, #00281a);
             border-color: #004d40;
             color: white;
-        }
-
-        #submitBtn:hover {
-            background-color: #00281a;
-            border-color: #00281a;
-        }
-
-        #instructions {
+            font-weight: 700;
             font-size: 1.1rem;
-            color: #004d40;
-            margin-bottom: 1rem;
+            border-radius: 30px;
+            padding: 0.85rem 2rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 77, 32, 0.8);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+            user-select: none;
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
         }
-        
-        .profile-header {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* centers the text */
-    margin-bottom: 1.5rem;
-    position: relative; /* allows absolute positioning inside */
-}
 
-.profile-header h2 {
-    margin: 0;
-    text-align: center;
-    flex-grow: 1;
-    color: #00796b;
-}
+        #submitBtn:disabled {
+            background: #017864aa;
+            border-color: #02816caa;
+            cursor: not-allowed;
+            box-shadow: none;
+            color: #a5d6a7fa;
+        }
 
-.back-btn {
-    position: absolute;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: #00796b;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
+        #submitBtn:not(:disabled):hover {
+            background-color: #00281a;
+            box-shadow: 0 8px 30px rgba(0, 40, 10, 0.9);
+            transform: scale(1.05);
+        }
 
-.back-btn:hover {
-    background-color: #004d40;
-}
+        video#videoPreview {
+            width: 100%;
+            max-height: 320px;
+            border-radius: 12px;
+            background: black;
+            box-shadow: 0 4px 15px rgba(0, 77, 64, 0.5);
+            user-select: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            main.form-container {
+                margin: 1.5rem 1rem 2rem;
+                padding: 1.5rem 1.5rem 2rem;
+                border-radius: 12px;
+            }
+
+            .profile-header h2 {
+                font-size: 1.5rem;
+            }
+
+            button,
+            label[for="uploadVideo"] {
+                min-width: 110px;
+                font-size: 0.95rem;
+                padding: 0.65rem 1.2rem;
+            }
+
+            #submitBtn {
+                max-width: 100%;
+                font-size: 1rem;
+                padding: 0.75rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+
+            button,
+            label[for="uploadVideo"] {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -113,22 +227,19 @@
         <h1>AI-Powered Sports Talent Assessment</h1>
     </header>
 
-    <main class="container">
+    <main class="form-container">
         <div class="profile-header">
-            <a href="dashboard.html" class="back-btn">←</a>
+            <a href="dashboard.html" class="back-btn" aria-label="Back to dashboard">←</a>
             <h2 id="testTitle">Fitness Test</h2>
         </div>
-        
+
         <p id="instructions">Loading instructions...</p>
 
         <div class="btn-group">
             <button id="startRecordBtn">Start Recording</button>
             <button id="stopRecordBtn" disabled>Stop Recording</button>
-            <label for="uploadVideo"
-                style="border: 2px solid #00796b; border-radius: 5px; padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 600; color: #00796b;">
-                Upload Video
-            </label>
-            <input type="file" id="uploadVideo" accept="video/*" style="display:none" />
+            <label for="uploadVideo">Upload Video</label>
+            <input type="file" id="uploadVideo" accept="video/*" />
         </div>
 
         <video id="videoPreview" controls></video>
