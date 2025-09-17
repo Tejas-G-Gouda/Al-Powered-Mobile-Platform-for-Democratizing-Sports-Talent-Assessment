@@ -5,7 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Test Results - AI Sports Talent Assessment</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
         .results-container {
             max-width: 700px;
@@ -63,27 +65,46 @@
 </head>
 
 <body>
-    <header>
-        <h1>AI-Powered Sports Talent Assessment</h1>
-    </header>
+    <header>AI-Powered Sports Talent Assessment</header>
 
-    <main class="results-container">
-        <h2>Test Results: Vertical Jump</h2>
-        <p><strong>Date:</strong> 2024-06-01</p>
-
-        <div class="result-item"><strong>Jump Height:</strong> 45 cm</div>
-        <div class="result-item"><strong>Power Score:</strong> 78 / 100</div>
-        <div class="result-item"><strong>Endurance Level:</strong> Good</div>
-
-        <div class="insights">
-            <strong>AI Insights:</strong> Your vertical jump is above average for your age group. To improve further,
-            focus on plyometric exercises and leg strength training.
+    <nav>
+        <div class="logo">SportsTalent</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="dashboard.html" class="btn">Dashboard</a>
+            <a href="results.html">Results</a>
         </div>
+    </nav>
 
-        <div class="btn-center">
-            <a href="dashboard.html" class="btn">Back to Dashboard</a>
+    <main>
+        <h2>Your Test Results</h2>
+
+        <div class="results-container">
+            <div class="result-item">Speed: 8.5/10</div>
+            <div class="result-item">Agility: 9.0/10</div>
+            <div class="result-item">Endurance: 7.8/10</div>
+            <div class="result-item">Strength: 8.2/10</div>
+
+            <div class="insights">
+                Based on your performance, you have excellent agility and speed. Focus on endurance training to improve
+                overall stamina.
+            </div>
+
+            <!-- Example gamification progress bar -->
+            <h3>Overall Progress</h3>
+            <div class="progress-bar" aria-label="Overall progress">
+                <div class="progress-bar-fill" style="width: 82%;"></div>
+            </div>
+
+            <!-- Example badge -->
+            <p>Achievement: <span class="badge">Level 4</span></p>
         </div>
     </main>
 </body>
 
 </html>
+
+
+
+
