@@ -5,9 +5,94 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Profile - AI Sports Talent Assessment</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
-        /* Profile photo circle */
+        /* Profile page specific styles */
+
+        body {
+            background-color: transparent;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            padding: 2rem 1rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            user-select: none;
+            color: #a5d6a7;
+            text-shadow: 0 0 8px rgba(0, 121, 107, 0.7);
+        }
+
+        main.form-container {
+            background: linear-gradient(135deg, #00796b, #004d40);
+
+            max-width: 520px;
+            margin: 40px auto 40px;
+            padding: 2.5rem 3rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 77, 64, 0.6);
+            backdrop-filter: blur(10px);
+            color: #e0f2f1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            box-sizing: border-box;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .profile-header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+            color: #a5d6a7;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 6px rgba(0, 121, 107, 0.8);
+            font-size: 1.8rem;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: -20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #e0f2f1aa;
+            color: #004d40;
+            font-size: 1.5rem;
+            font-weight: bolder;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #004d40;
+            color: #e0f2f1aa;
+        }
+
         .profile-photo {
             width: 120px;
             height: 120px;
@@ -16,52 +101,169 @@
             border: 3px solid #00796b;
             margin-bottom: 1rem;
             cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: box-shadow 0.3s ease;
+            background: #e0f2f16f;
         }
 
+        .profile-photo:hover {
+            box-shadow: 0 0 15px #a5d6a7;
+        }
+
+
         .photo-upload-label {
-            display: inline-block;
+            display: block;
             margin-bottom: 1.5rem;
-            color: #00796b;
+            color: #a5d6a7;
             font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            user-select: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #b2dfdb;
+            margin-bottom: 0.3rem;
+            display: block;
+            user-select: none;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 30px;
+            border: 2px solid #004d40;
+            background: #e0f2f1aa;
+            color: #004d40;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+            user-select: text;
+            resize: vertical;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #a5d6a7;
+            box-shadow: 0 0 8px #a5d6a7;
+            background: #ffffffcc;
+        }
+
+        textarea {
+            min-height: 80px;
+            max-height: 150px;
+            border-radius: 16px;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M6%207L0%200h12L6%207z%22%20fill%3D%22%2300492e%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px 7px;
             cursor: pointer;
         }
 
-        .profile-header {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* centers the text */
-    margin-bottom: 1.5rem;
-    position: relative; /* allows absolute positioning inside */
-}
+        button.btn.btn-primary {
+            background: linear-gradient(135deg, #43a047, #1b5e20);
+            color: #e0f2f1;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.85rem 2rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(67, 160, 71, 0.6);
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+            user-select: none;
+            margin-top: 1rem;
+            width: 100%;
+            letter-spacing: 1px;
+            display: block;
+        }
 
-.profile-header h2 {
-    margin: 0;
-    text-align: center;
-    flex-grow: 1;
-    color: #00796b;
-}
+        button.btn.btn-primary:hover {
+            background: linear-gradient(135deg, #66bb6a, #2e7d32);
+            box-shadow: 0 8px 30px rgba(102, 187, 106, 0.8);
+        }
 
-.back-btn {
-    position: absolute;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: #00796b;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
+        footer {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            text-align: center;
+            padding: 1rem 0;
+            color: #a5d6a7;
+            font-size: 0.9rem;
+            user-select: none;
+        }
 
-.back-btn:hover {
-    background-color: #004d40;
-}
+        .redirect-text {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #b2dfdb;
+            user-select: none;
+        }
 
+        .redirect-text a {
+            color: #a5d6a7;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .redirect-text a:hover {
+            color: #e0f2f1;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            main.form-container {
+                margin: 20px 1rem 20px;
+                padding: 2rem 1.5rem 2.5rem;
+                border-radius: 12px;
+            }
+
+            .profile-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            header {
+                font-size: 1.5rem;
+                padding: 1.5rem 1rem 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            button.btn.btn-primary {
+                font-size: 1rem;
+                padding: 0.75rem 1.5rem;
+            }
+        }
     </style>
     <script>
         // Preview uploaded profile photo
@@ -79,12 +281,12 @@
 
     <main class="form-container">
         <div class="profile-header">
-            <a href="dashboard.html" class="back-btn">←</a>
+            <a href="dashboard.html" class="back-btn" aria-label="Back to dashboard">←</a>
             <h2>Your Profile</h2>
         </div>
 
         <form id="profileForm" action="/profile" method="POST" enctype="multipart/form-data">
-            <label for="photoUpload" class="photo-upload-label">
+            <label for="photoUpload" class="photo-upload-label" tabindex="0">
                 <img src="images/default-profile.png" alt="Profile Photo" id="profilePhoto" class="profile-photo" />
                 <br />
                 Click to upload/change photo
@@ -94,6 +296,10 @@
 
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
 
             <label for="age">Age</label>
             <input type="number" id="age" name="age" min="10" max="100" required />
@@ -125,6 +331,10 @@
 
             <button type="submit" class="btn btn-primary">Save Profile</button>
         </form>
+        <p class="redirect-text">
+            <a href="edit_more.html">Edit more information</a>
+        </p>
+
     </main>
 
     <footer>
