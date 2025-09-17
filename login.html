@@ -5,26 +5,172 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login - AI Sports Talent Assessment</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Additional styles for login page enhancements */
+
+        body {
+            /* background: linear-gradient(135deg, #00796b, #004d40); */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            
+            padding: 2rem 1rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            user-select: none;
+            color: #a5d6a7;
+            text-shadow: 0 0 8px rgba(0, 121, 107, 0.7);
+        }
+
+        main.form-container {
+            
+            background: linear-gradient(135deg, #00796b, #004d40);
+            
+            max-width: 400px;
+            margin: auto;
+            padding: 2.5rem 3rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 77, 64, 0.6);
+            backdrop-filter: blur(10px);
+            color: #e0f2f1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+            top: 40px;
+        }
+
+        main.form-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #a5d6a7;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 6px rgba(0, 121, 107, 0.8);
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #b2dfdb;
+            margin-top: 0.5rem;
+            margin-bottom: 0.3rem;
+            display: block;
+            user-select: none;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 30px;
+            border: 2px solid #004d40;
+            background: #e0f2f1aa;
+            color: #004d40;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+            user-select: text;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #a5d6a7;
+            box-shadow: 0 0 8px #a5d6a7;
+            background: #ffffffcc;
+        }
+
+        button.btn.btn-primary {
+            background-color: #e0f2f1aa;
+            color: rgba(0, 121, 107, 0.7);;
+            
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.85rem 2rem;
+            border-radius: 30px;
+            border: 1.5px solid #004d40;
+            cursor: pointer;
+            
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+            user-select: none;
+            margin-top: 1.5rem;
+            width: 100%;
+            letter-spacing: 1px;
+        }
+
+        button.btn.btn-primary:hover {
+            background: rgba(0, 121, 107, 0.7);
+            box-shadow: 0 8px 30px rgba(102, 187, 106, 0.8);
+            color: #fff;
+        }
+
+        .redirect-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: #b2dfdb;
+            user-select: none;
+        }
+
+        .redirect-text a {
+            color: #a5d6a7;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .redirect-text a:hover {
+            color: #e0f2f1;
+            text-decoration: underline;
+        }
+
+    
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            main.form-container {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <h1>AI-Powered Sports Talent Assessment</h1>
+        
     </header>
 
     <main class="form-container">
+        
         <h2>Login</h2>
-        <!-- <form id="loginForm" action="/login" method="POST"> --> <!--DEFAULT-->
-        <form id="loginForm" action="dashboard.html" method="GET" >
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <form id="loginForm" action="dashboard.html" method="GET">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required />
+
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
+
         <p class="redirect-text">
             New user? <a href="register.html">Register here</a>
         </p>
