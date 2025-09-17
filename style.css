@@ -1,4 +1,4 @@
-Reset and base
+/* Reset and base */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,166 +7,300 @@ Reset and base
 }
 
 body {
-    background: #f0f4f8;
+    background: #f5f9f8;
     color: #333;
+    line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    font-size: 16px;
 }
 
+/* Header */
 header {
-    background: #00796b;
+    background: linear-gradient(135deg, #00796b, #004d40);
+    color: #fff;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1.2px;
+    box-shadow: 0 4px 8px rgba(0, 121, 107, 0.3);
+    user-select: none;
+}
+header h1, 
+header h2 {
+    color: #a5d6a7;   /* text color */
+    text-shadow: 0 0 8px rgba(0, 121, 107, 0.7); /* optional glow */
+}
+
+/* Navigation */
+nav {
+    background-color: #00796b;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
-    padding: 1rem;
-    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 121, 107, 0.3);
+    font-weight: 600;
+    font-size: 1rem;
 }
 
-.hero {
-    text-align: center;
-    padding: 4rem 1rem;
+nav .logo {
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 1.1px;
 }
 
-.hero p {
-    font-size: 1.25rem;
+nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 2rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #a5d6a7;
+    transition: width 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: #a5d6a7;
+}
+
+nav .nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Main container */
+main {
+    flex: 1;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+main:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+    color: #00796b;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+h2 {
+    font-size: 2rem;
+    text-align: center;
     margin-bottom: 2rem;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
 }
 
-.btn {
-    padding: 0.75rem 2rem;
-    border: 2px solid #00796b;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #00796b;
-    font-weight: 600;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.btn:hover {
-    background-color: #004d40;
-    color: white;
-    border-color: #004d40;
-}
-
-.btn-primary {
-    background-color: #00796b;
-    color: white;
-    border-color: #00796b;
-}
-
-.btn-primary:hover {
-    background-color: #004d40;
-    border-color: #004d40;
-}
-
-footer {
-    background: #004d40;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-}
-
-
-
-
-
-
-
-
-
-
-/* Login CSS */
-
-
-.form-container {
-    max-width: 400px;
-    margin: 3rem auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.form-container h2 {
-    margin-bottom: 1.5rem;
-    color: #00796b;
-}
-
-.form-container label {
-    display: block;
-    text-align: left;
-    margin: 0.75rem 0 0.25rem;
-    font-weight: 600;
-}
-
-.form-container input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1.5px solid #ccc;
-    border-radius: 5px;
+/* Paragraphs */
+p {
+    color: #555;
+    margin-bottom: 1rem;
     font-size: 1rem;
 }
 
-.form-container input:focus {
-    border-color: #00796b;
-    outline: none;
-}
-
-.form-container button {
-    margin-top: 1.5rem;
-    width: 100%;
-    font-size: 1.1rem;
-}
-
-.redirect-text {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-}
-
-.redirect-text a {
-    color: #00796b;
+/* Buttons */
+.btn,
+button {
+    background: #00796b;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.3);
+    user-select: none;
+    display: inline-block;
+    text-align: center;
     text-decoration: none;
+}
+
+.btn:hover,
+button:hover {
+    background: #004d40;
+    box-shadow: 0 6px 18px rgba(0, 77, 64, 0.5);
+}
+
+/* Results Page Specific */
+.results-container .result-item {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid #00796b;
+    color: #004d40;
+}
+
+.results-container .insights {
+    background: #e0f2f1;
+    border-left: 6px solid #00796b;
+    padding: 1.2rem 1.5rem;
+    margin-top: 2rem;
+    font-style: italic;
+    color: #004d40;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 121, 107, 0.1);
+}
+
+/* News Page Specific */
+.news-article {
+    background: #f9fdfc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.1);
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.8rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-article:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 121, 107, 0.2);
+}
+
+.news-article img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    user-select: none;
+}
+
+.news-date {
+    font-size: 0.9rem;
+    color: #00796b;
+    margin-bottom: 0.7rem;
     font-weight: 600;
 }
 
-.redirect-text a:hover {
+.news-description {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.read-more {
+    color: #00796b;
+    font-weight: 700;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.3s ease;
+}
+
+.read-more:hover {
+    color: #004d40;
     text-decoration: underline;
 }
 
-
-
-
-
-
-/* Register CSS */
-.form-container select {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1.5px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: white;
-    appearance: none;
-    /* Removes default arrow in some browsers */
-    -webkit-appearance: none;
-    -moz-appearance: none;
+/* Loading and error messages */
+.loading,
+.error {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    font-weight: 600;
 }
 
-.form-container select:focus {
-    border-color: #00796b;
-    outline: none;
+.error {
+    color: #d32f2f;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    main {
+        padding: 1.5rem 1.5rem;
+        margin: 1rem;
+    }
 
-.sport-type{
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav .nav-links {
+        margin-top: 0.5rem;
+    }
+
+    nav .nav-links a {
+        margin-left: 0;
+        margin-right: 1.5rem;
+    }
+
+    .news-article {
+        padding: 1rem 1rem;
+    }
+}
+
+/* Gamification: Progress bar example (optional) */
+.progress-bar {
+    background: #c8e6c9;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 18px;
+    margin: 1rem 0 2rem 0;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, #00796b, #004d40);
+    height: 100%;
+    width: 70%;
+    /* example progress */
+    border-radius: 20px 0 0 20px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Badge example (optional) */
+.badge {
+    display: inline-block;
+    background: #00796b;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    user-select: none;
+    box-shadow: 0 2px 6px rgba(0, 121, 107, 0.4);
+    margin-left: 0.5rem;
+}
+
+footer {
+    text-align: center;
+}
+
+.sport-type {
     text-align: center;
     font-weight: bold;
 }
