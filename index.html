@@ -5,7 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI Sports Talent Assessment</title>
-    <link rel="stylesheet" href="style.css" />
+
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -15,6 +22,12 @@
 
     <main class="hero">
         <p>Democratizing Sports Talent Assessment for All Athletes</p>
+
+        <!-- Optional generic progress bar (e.g., site usage or onboarding info) -->
+        <div class="progress-bar" aria-label="Site onboarding progress">
+            <div class="progress-bar-fill" style="width: 45%;"></div>
+        </div>
+
         <div class="buttons">
             <a href="login.html" class="btn">Login</a>
             <a href="register.html" class="btn btn-primary">Register</a>
@@ -27,3 +40,4 @@
 </body>
 
 </html>
+
