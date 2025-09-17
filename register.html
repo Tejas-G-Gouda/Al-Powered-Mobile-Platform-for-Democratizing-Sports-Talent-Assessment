@@ -5,7 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Register - AI Sports Talent Assessment</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <script>
         function validateForm() {
             const password = document.getElementById('password').value;
@@ -16,7 +18,159 @@
             }
             return true;
         }
+        
     </script>
+    <style>
+        /* Additional styles for register page enhancements */
+
+        body {
+            background-color: transparent;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            padding: 2rem 1rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            user-select: none;
+            color: #a5d6a7;
+            text-shadow: 0 0 8px rgba(0, 121, 107, 0.7);
+        }
+
+        main.form-container {
+            background: linear-gradient(135deg, #00796b, #004d40);
+
+            max-width: 520px;
+            margin: 40px auto 40px;
+            padding: 2.5rem 3rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 77, 64, 0.6);
+            backdrop-filter: blur(10px);
+            color: #e0f2f1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            box-sizing: border-box;
+        }
+        main.form-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #a5d6a7;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 6px rgba(0, 121, 107, 0.8);
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #b2dfdb;
+            margin-bottom: 0.3rem;
+            display: block;
+            user-select: none;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 30px;
+            border: 2px solid #004d40;
+            background: #e0f2f1aa;
+            color: #004d40;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+            user-select: text;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #a5d6a7;
+            box-shadow: 0 0 8px #a5d6a7;
+            background: #ffffffcc;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M6%207L0%200h12L6%207z%22%20fill%3D%22%2300492e%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px 7px;
+            cursor: pointer;
+        }
+
+        button.btn.btn-primary {
+            background-color: #e0f2f1aa;
+            color:#004d40e6;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.85rem 2rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+            user-select: none;
+            margin-top: 1rem;
+            width: 100%;
+            letter-spacing: 1px;
+        }
+
+        button.btn.btn-primary:hover {
+            background: linear-gradient(135deg, #52c958, #004a05);
+            box-shadow: 0 8px 30px rgba(102, 187, 106, 0.8);
+            color: #fff;
+        }
+
+        .redirect-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: #b2dfdb;
+            user-select: none;
+        }
+
+        .redirect-text a {
+            color: #a5d6a7;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .redirect-text a:hover {
+            color: #e0f2f1;
+            text-decoration: underline;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 520px) {
+            main.form-container {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -26,7 +180,8 @@
 
     <main class="form-container">
         <h2>Register</h2>
-        <!-- <form id="registerForm" action="/register" method="POST" onsubmit="return validateForm()"> -->
+
+
         <form id="registerForm" action="dashboard.html" method="GET" onsubmit="return validateForm()">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
@@ -54,7 +209,7 @@
 
             <label for="state">State</label>
             <select id="state" name="state" required>
-                <option value="" disabled selected >Select your State</option>
+                <option value="" disabled selected>Select your State</option>
                 <!-- States -->
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -85,7 +240,6 @@
                 <option value="Uttarakhand">Uttarakhand</option>
                 <option value="West Bengal">West Bengal</option>
 
-
                 <option value="" disabled class="sport-type">OR Select your Union Territories</option>
                 <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                 <option value="Chandigarh">Chandigarh</option>
@@ -103,9 +257,8 @@
 
             <label for="sportPreference">Sport Preference</label>
             <select id="sportPreference" name="sportPreference" required>
-
                 <option value="" disabled selected>Select your preferred sport</option>
-                
+
                 <option value="Athletics">Athletics</option>
                 <option value="Track and Field">Track and Field</option>
                 <option value="Marathon">Marathon</option>
@@ -118,7 +271,7 @@
                 <option value="Triple Jump">Triple Jump</option>
                 <option value="Pole Vault">Pole Vault</option>
 
-                <option value="" disabled class="sport-type" >Team Sports</option>
+                <option value="" disabled class="sport-type">Team Sports</option>
                 <option value="Cricket">Cricket</option>
                 <option value="Football">Football</option>
                 <option value="Hockey">Hockey</option>
@@ -128,15 +281,13 @@
                 <option value="Handball">Handball</option>
                 <option value="Rugby">Rugby</option>
 
-                
                 <option value="" disabled class="sport-type">Racket Sports</option>
                 <option value="Badminton">Badminton</option>
                 <option value="Tennis">Tennis</option>
                 <option value="Table Tennis">Table Tennis</option>
                 <option value="Squash">Squash</option>
 
-                
-                <option value="" disabled class="sport-type" >Combat Sports</option>
+                <option value="" disabled class="sport-type">Combat Sports</option>
                 <option value="Wrestling">Wrestling</option>
                 <option value="Boxing">Boxing</option>
                 <option value="Judo">Judo</option>
@@ -144,15 +295,13 @@
                 <option value="Karate">Karate</option>
                 <option value="Mixed Martial Arts">Mixed Martial Arts</option>
 
-                
                 <option value="" disabled class="sport-type">Traditional & Indigenous </option>
                 <option value="Kho-Kho">Kho-Kho</option>
                 <option value="Mallakhamb">Mallakhamb</option>
                 <option value="Gatka">Gatka</option>
                 <option value="Yogasana">Yogasana</option>
 
-
-                <option value="" disabled class="sport-type" > Others</option>
+                <option value="" disabled class="sport-type"> Others</option>
                 <option value="Archery">Archery</option>
                 <option value="Shooting">Shooting</option>
                 <option value="Weightlifting">Weightlifting</option>
@@ -162,13 +311,11 @@
                 <option value="Equestrian">Equestrian</option>
                 <option value="Golf">Golf</option>
                 <option value="Chess">Chess</option>
-
-
-                <!-- Add more sports as needed -->
             </select>
 
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
+
         <p class="redirect-text">
             Already have an account? <a href="login.html">Login here</a>
         </p>
